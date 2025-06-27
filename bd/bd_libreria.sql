@@ -1,4 +1,5 @@
 CREATE DATABASE  gestion_inventario;
+Use gestion_inventario;
 -- USUARIOS Y ROLES
 CREATE TABLE usuario (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
