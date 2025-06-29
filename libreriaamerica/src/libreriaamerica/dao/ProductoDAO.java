@@ -1,16 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package dao;
-
-import conexion.ConnectionDB;
-import entidades.Producto;
+package libreriaamerica.dao;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.math.BigDecimal;
+import libreriaamerica.model.entity.Producto;
+import libreriaamerica.util.ConexionBD;
 
 public class ProductoDAO {
 
@@ -19,7 +14,7 @@ public class ProductoDAO {
         String sql = "INSERT INTO producto (nombre, categoria, precio, stock, stock_minimo, id_proveedor, descripcion) " +
                      "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-        try (Connection con = ConnectionDB.getConnection();
+        try (Connection con = ConexionBD.getConnection();
              PreparedStatement stmt = con.prepareStatement(sql)) {
 
             stmt.setString(1, producto.getNombre());
@@ -44,7 +39,7 @@ public class ProductoDAO {
         List<Producto> lista = new ArrayList<>();
         String sql = "SELECT * FROM producto";
 
-        try (Connection con = ConnectionDB.getConnection();
+        try (Connection con = ConexionBD.getConnection();
              Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
@@ -73,7 +68,7 @@ public class ProductoDAO {
         String sql = "SELECT * FROM producto WHERE nombre LIKE ?";
         Producto p = null;
 
-        try (Connection con = ConnectionDB.getConnection();
+        try (Connection con = ConexionBD.getConnection();
              PreparedStatement stmt = con.prepareStatement(sql)) {
 
             stmt.setString(1, "%" + nombre + "%");
@@ -102,7 +97,7 @@ public class ProductoDAO {
     public boolean actualizarProducto(Producto producto) {
         String sql = "UPDATE producto SET nombre=?, categoria=?, precio=?, stock=?, stock_minimo=?, id_proveedor=?, descripcion=? WHERE id_producto=?";
 
-        try (Connection con = ConnectionDB.getConnection();
+        try (Connection con = ConexionBD.getConnection();
              PreparedStatement stmt = con.prepareStatement(sql)) {
 
             stmt.setString(1, producto.getNombre());
@@ -127,7 +122,7 @@ public class ProductoDAO {
     public boolean eliminarProducto(int idProducto) {
         String sql = "DELETE FROM producto WHERE id_producto = ?";
 
-        try (Connection con = ConnectionDB.getConnection();
+        try (Connection con = ConexionBD.getConnection();
              PreparedStatement stmt = con.prepareStatement(sql)) {
 
             stmt.setInt(1, idProducto);
@@ -146,7 +141,7 @@ public class ProductoDAO {
         List<Producto> lista = new ArrayList<>();
         String sql = "SELECT * FROM producto WHERE stock < stock_minimo";
 
-        try (Connection con = ConnectionDB.getConnection();
+        try (Connection con = ConexionBD.getConnection();
              Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 

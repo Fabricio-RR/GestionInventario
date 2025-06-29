@@ -1,24 +1,20 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package vistas;
+package libreriaamerica.vistas;
 
+import libreriaamerica.controladores.ControlInventario;
+import libreriaamerica.model.entity.Producto;
 
 public class PantallaGestionProductos extends javax.swing.JFrame {
 
     
     private javax.swing.table.DefaultTableModel modelo;
-    private controladores.ControlInventario control = new controladores.ControlInventario();
+    private ControlInventario control = new ControlInventario();
 
     public PantallaGestionProductos() {
         initComponents();
         
      modelo = (javax.swing.table.DefaultTableModel) jTable2.getModel();
 
-
      cargarProductos();
-
 
      btnAgregar.addActionListener(e -> agregarProducto());
      btnCargar.addActionListener(e -> cargarProductos());
@@ -31,7 +27,7 @@ public class PantallaGestionProductos extends javax.swing.JFrame {
     
     private void cargarProductos() {
     modelo.setRowCount(0); // Limpiar tabla
-    for (entidades.Producto p : control.listarProductos()) {
+    for (Producto p : control.listarProductos()) {
         modelo.addRow(new Object[]{
             p.getIdProducto(),
             p.getNombre(),
@@ -47,7 +43,7 @@ public class PantallaGestionProductos extends javax.swing.JFrame {
 
     private void agregarProducto() {
     try {
-        entidades.Producto p = new entidades.Producto();
+        Producto p = new Producto();
         p.setNombre(txtNombre.getText());
         p.setCategoria(txtCategoria.getText());
         p.setPrecio(new java.math.BigDecimal(txtPrecio.getText()));
@@ -86,7 +82,7 @@ public class PantallaGestionProductos extends javax.swing.JFrame {
     int fila = jTable2.getSelectedRow();
     if (fila >= 0) {
         try {
-            entidades.Producto p = new entidades.Producto();
+            Producto p = new Producto();
             p.setIdProducto((int) modelo.getValueAt(fila, 0));
             p.setNombre(txtNombre.getText());
             p.setCategoria(txtCategoria.getText());

@@ -1,17 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package vistas;
+package libreriaamerica.vistas;
 
-/**
- *
- * @author Diego
- */
+import libreriaamerica.controladores.ControlInventario;
+import libreriaamerica.model.entity.Proveedor;
+
 public class PantallaGestionProveedores extends javax.swing.JFrame {
 
 private javax.swing.table.DefaultTableModel modelo;
-private controladores.ControlInventario control = new controladores.ControlInventario();
+private ControlInventario control = new ControlInventario();
     public PantallaGestionProveedores() {
         initComponents();
         modelo = (javax.swing.table.DefaultTableModel) tablaProveedores.getModel();
@@ -29,7 +24,7 @@ private controladores.ControlInventario control = new controladores.ControlInven
     
     private void cargarProveedores() {
     modelo.setRowCount(0);
-    for (entidades.Proveedor p : control.listarProveedores()) {
+    for (Proveedor p : control.listarProveedores()) {
         modelo.addRow(new Object[]{
             p.getIdProveedor(),
             p.getNombre(),
@@ -42,7 +37,7 @@ private controladores.ControlInventario control = new controladores.ControlInven
     
     private void agregarProveedor() {
     try {
-        entidades.Proveedor p = new entidades.Proveedor();
+        Proveedor p = new Proveedor();
         p.setNombre(txtNombre.getText());
         p.setDireccion(txtDireccion.getText());
         p.setTelefono(txtTelefono.getText());
@@ -63,7 +58,7 @@ private controladores.ControlInventario control = new controladores.ControlInven
     int fila = tablaProveedores.getSelectedRow();
     if (fila >= 0) {
         try {
-            entidades.Proveedor p = new entidades.Proveedor();
+            Proveedor p = new Proveedor();
             p.setIdProveedor((int) modelo.getValueAt(fila, 0));
             p.setNombre(txtNombre.getText());
             p.setDireccion(txtDireccion.getText());

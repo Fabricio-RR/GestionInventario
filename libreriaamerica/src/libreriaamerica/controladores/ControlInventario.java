@@ -1,15 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package controladores;
-
-import dao.ProductoDAO;
-import dao.ProveedorDAO;
-import entidades.Producto;
-import entidades.Proveedor;
+package libreriaamerica.controladores;
 
 import java.util.List;
+import libreriaamerica.dao.ProductoDAO;
+import libreriaamerica.dao.ProveedorDAO;
+import libreriaamerica.model.entity.Producto;
+import libreriaamerica.model.entity.Proveedor;
 
 public class ControlInventario {
 

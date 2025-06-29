@@ -1,15 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package dao;
 
-import conexion.ConnectionDB;
-import entidades.Proveedor;
+package libreriaamerica.dao;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import libreriaamerica.model.entity.Proveedor;
+import libreriaamerica.util.ConexionBD;
 
 public class ProveedorDAO {
 
@@ -17,7 +13,7 @@ public class ProveedorDAO {
     public boolean insertarProveedor(Proveedor proveedor) {
         String sql = "INSERT INTO proveedor (nombre, direccion, telefono, email) VALUES (?, ?, ?, ?)";
 
-        try (Connection con = ConnectionDB.getConnection();
+        try (Connection con = ConexionBD.getConnection();
              PreparedStatement stmt = con.prepareStatement(sql)) {
 
             stmt.setString(1, proveedor.getNombre());
@@ -39,7 +35,7 @@ public class ProveedorDAO {
         List<Proveedor> lista = new ArrayList<>();
         String sql = "SELECT * FROM proveedor";
 
-        try (Connection con = ConnectionDB.getConnection();
+        try (Connection con = ConexionBD.getConnection();
              Statement stmt = con.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
@@ -65,7 +61,7 @@ public class ProveedorDAO {
         String sql = "SELECT * FROM proveedor WHERE nombre LIKE ?";
         Proveedor p = null;
 
-        try (Connection con = ConnectionDB.getConnection();
+        try (Connection con = ConexionBD.getConnection();
              PreparedStatement stmt = con.prepareStatement(sql)) {
 
             stmt.setString(1, "%" + nombre + "%");
@@ -91,7 +87,7 @@ public class ProveedorDAO {
     public boolean actualizarProveedor(Proveedor proveedor) {
         String sql = "UPDATE proveedor SET nombre=?, direccion=?, telefono=?, email=? WHERE id_proveedor=?";
 
-        try (Connection con = ConnectionDB.getConnection();
+        try (Connection con = ConexionBD.getConnection();
              PreparedStatement stmt = con.prepareStatement(sql)) {
 
             stmt.setString(1, proveedor.getNombre());
@@ -113,7 +109,7 @@ public class ProveedorDAO {
     public boolean eliminarProveedor(int idProveedor) {
         String sql = "DELETE FROM proveedor WHERE id_proveedor=?";
 
-        try (Connection con = ConnectionDB.getConnection();
+        try (Connection con = ConexionBD.getConnection();
              PreparedStatement stmt = con.prepareStatement(sql)) {
 
             stmt.setInt(1, idProveedor);
