@@ -1,26 +1,29 @@
 package libreriaamerica.model.entity;
 
+import java.math.BigDecimal;
+
 public class Producto {
+    
     private int idProducto;
     private String nombre;
     private String categoria;
-    private double precio;
+    private BigDecimal precio;
     private int stock;
     private int stockMinimo;
-    private Proveedor proveedor; 
+    private int idProveedor; 
     private String descripcion;
 
     public Producto() {
     }
 
-    public Producto(int idProducto, String nombre, String categoria, double precio, int stock, int stockMinimo, Proveedor proveedor, String descripcion) {
+    public Producto(int idProducto, String nombre, String categoria, BigDecimal precio, int stock, int stockMinimo, int idProveedor, String descripcion) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.categoria = categoria;
         this.precio = precio;
         this.stock = stock;
         this.stockMinimo = stockMinimo;
-        this.proveedor = proveedor;
+        this.idProveedor = idProveedor;
         this.descripcion = descripcion;
     }
 
@@ -48,11 +51,11 @@ public class Producto {
         this.categoria = categoria;
     }
 
-    public double getPrecio() {
+    public BigDecimal getPrecio() {
         return precio;
     }
 
-    public void setPrecio(double precio) {
+    public void setPrecio(BigDecimal precio) {
         this.precio = precio;
     }
 
@@ -72,12 +75,12 @@ public class Producto {
         this.stockMinimo = stockMinimo;
     }
 
-    public Proveedor getProveedor() {
-        return proveedor;
+    public int getIdProveedor() {
+        return idProveedor;
     }
 
-    public void setProveedor(Proveedor proveedor) {
-        this.proveedor = proveedor;
+    public void setIdProveedor(int idProveedor) {
+        this.idProveedor = idProveedor;
     }
 
     public String getDescripcion() {
@@ -88,4 +91,13 @@ public class Producto {
         this.descripcion = descripcion;
     }
     
+    
+    //Metodo para verificar si el stock es bajo
+    public boolean esStockBajo(){
+        return stock < stockMinimo;
+    }
+    
+    
+    
 }
+
